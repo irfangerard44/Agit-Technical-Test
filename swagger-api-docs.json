@@ -1,0 +1,243 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Agit Book",
+        "description": "Agit Service Documentation",
+        "version": "0.01"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8080",
+            "description": "Generated server url"
+        }
+    ],
+    "paths": {
+        "/api/book": {
+            "get": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "get all book when filter is optimal",
+                "operationId": "getAllBook",
+                "parameters": [
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "insert book",
+                "operationId": "insertBook",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/createBookModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "borrow book",
+                "operationId": "deleteBook",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/book/update-book": {
+            "post": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "update book",
+                "operationId": "update_Book",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/updateBukuModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/book/borrow-book": {
+            "post": {
+                "tags": [
+                    "book-controller"
+                ],
+                "summary": "borrow book",
+                "operationId": "borrow_Book",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/pinjamBukuModel"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "createBookModel": {
+                "type": "object",
+                "properties": {
+                    "judul": {
+                        "type": "string"
+                    },
+                    "pengarang": {
+                        "type": "string"
+                    },
+                    "penerbit": {
+                        "type": "string"
+                    },
+                    "tanggal_terbit": {
+                        "type": "string",
+                        "description": "tanngal_terbit ",
+                        "example": "29 07 2023"
+                    },
+                    "tebal_buku": {
+                        "type": "string"
+                    }
+                }
+            },
+            "updateBukuModel": {
+                "type": "object",
+                "properties": {
+                    "judul": {
+                        "type": "string"
+                    },
+                    "pengarang": {
+                        "type": "string"
+                    },
+                    "penerbit": {
+                        "type": "string"
+                    },
+                    "tanggal_terbit": {
+                        "type": "string",
+                        "description": "tanngal_terbit ",
+                        "example": "29 07 2023"
+                    },
+                    "tebal_buku": {
+                        "type": "string"
+                    },
+                    "status": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "id_BOOK": {
+                        "type": "string"
+                    }
+                }
+            },
+            "pinjamBukuModel": {
+                "type": "object",
+                "properties": {
+                    "peminjam": {
+                        "type": "string"
+                    },
+                    "tanggal_pinjam": {
+                        "type": "string",
+                        "description": "tanggal_pinjam ",
+                        "example": "29 07 2023"
+                    },
+                    "tanggal_kembali": {
+                        "type": "string",
+                        "description": "tanggal_kembali ",
+                        "example": "29 07 2023"
+                    },
+                    "id_BOOK": {
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
